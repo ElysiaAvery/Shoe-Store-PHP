@@ -93,5 +93,45 @@
       //Assert
       $this->assertEquals("Super Shoes +", $result);
     }
+
+    function testDeleteAll()
+    {
+      //Arrange
+      $name =  "Super Shoes Plus";
+      $id = 1;
+      $test_store = new Store($name, $id);
+      $test_store->save();
+
+      $name2 =  "Only Clogz";
+      $id2 = 2;
+      $test_store2 = new Store($name, $id);
+      $test_store2->save();
+
+      //Act
+      Store::deleteAll();
+
+      //Assert
+      $this->assertEquals([], Store::getAll());
+    }
+
+    function testDeleteStore()
+    {
+      //Arrange
+      $name =  "Super Shoes Plus";
+      $id = 1;
+      $test_store = new Store($name, $id);
+      $test_store->save();
+
+      $name2 =  "Only Clogz";
+      $id2 = 2;
+      $test_store2 = new Store($name, $id);
+      $test_store2->save();
+
+      //Act
+      $test_store->delete();
+
+      //Assert
+      $this->assertEquals([$test_store2], Store::getAll());
+    }
   }
 ?>
