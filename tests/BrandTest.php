@@ -25,10 +25,10 @@
     {
       //Arrange
       $name = "Nike";
-      $test_store = new Brand($name);
+      $test_brand = new Brand($name);
 
       //Act
-      $result = $test_store->getName();
+      $result = $test_brand->getName();
 
       //Assert
       $this->assertEquals($name, $result);
@@ -39,11 +39,11 @@
     {
       //Arrange
       $name = "Nike";
-      $test_store = new Brand($name);
+      $test_brand = new Brand($name);
 
       //Act
-      $test_store->setName("Adidas");
-      $result = $test_store->getName();
+      $test_brand->setName("Adidas");
+      $result = $test_brand->getName();
 
       //Assert
       $this->assertEquals("Adidas", $result);
@@ -54,10 +54,10 @@
       //Arrange
       $name = "Nike";
       $id = 1;
-      $test_store = new Brand($name, $id);
+      $test_brand = new Brand($name, $id);
 
       //Act
-      $result = $test_store->getId();
+      $result = $test_brand->getId();
 
       //Assert
       $this->assertEquals(1, $result);
@@ -68,14 +68,30 @@
       //Arrange
       $name = "Nike";
       $id = 1;
-      $test_store = new Brand($name, $id);
-      $test_store->save();
+      $test_brand = new Brand($name, $id);
+      $test_brand->save();
 
       //Act
       $result = Brand::getAll();
 
       //Assert
-      $this->assertEquals($test_store, $result[0]);
+      $this->assertEquals($test_brand, $result[0]);
+    }
+
+    function testUpdate()
+    {
+      //Arrange
+      $name = "Nike";
+      $id = 1;
+      $test_brand = new Brand($name, $id);
+      $test_brand->save();
+
+      //Act
+      $test_brand->update("Adidas");
+      $result = $test_brand->getName();
+
+      //Assert
+      $this->assertEquals("Adidas", $result);
     }
   }
 ?>
