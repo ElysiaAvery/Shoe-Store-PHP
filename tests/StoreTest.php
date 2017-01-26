@@ -104,7 +104,7 @@
 
       $name2 =  "Only Clogz";
       $id2 = 2;
-      $test_store2 = new Store($name, $id);
+      $test_store2 = new Store($name2, $id2);
       $test_store2->save();
 
       //Act
@@ -124,7 +124,7 @@
 
       $name2 =  "Only Clogz";
       $id2 = 2;
-      $test_store2 = new Store($name, $id);
+      $test_store2 = new Store($name2, $id2);
       $test_store2->save();
 
       //Act
@@ -132,6 +132,52 @@
 
       //Assert
       $this->assertEquals([$test_store2], Store::getAll());
+    }
+
+    function testAddBrand()
+    {
+      //Arrange
+      $name =  "Super Shoes Plus";
+      $id = 1;
+      $test_store = new Store($name, $id);
+      $test_store->save();
+
+      $name2 = "Nike";
+      $id2 = 1;
+      $test_brand = new Brand($name2, $id2);
+      $test_brand->save();
+
+      //Act
+      $test_store->addBrand($test_brand);
+
+      //Assert
+      $this->assertEquals($test_store->getBrands(), [$test_brand]);
+    }
+
+    function testGetBrands()
+    {
+      //Arrange
+      $name =  "Super Shoes Plus";
+      $id = 1;
+      $test_store = new Store($name, $id);
+      $test_store->save();
+
+      $name2 = "Nike";
+      $id2 = 1;
+      $test_brand = new Brand($name2, $id2);
+      $test_brand->save();
+
+      $name3 = "Adidas";
+      $id3 = 2;
+      $test_brand2 = new Brand($name3, $id3);
+      $test_brand2->save();
+
+      //Act
+      $test_store->addBrand($test_brand);
+      $test_store->addBrand($test_brand2);
+
+      //Assert
+      $this->assertEquals($test_store->getBrands(), [$test_brand, $test_brand2]);
     }
   }
 ?>
