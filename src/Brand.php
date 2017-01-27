@@ -43,6 +43,19 @@
       $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE brand_id = {$this->getId()};");
     }
 
+    static function getAll()
+    {
+      $returned_brands = $GLOBALS['DB']->query("SELECT * FROM brands;");
+      $brands = array();
+      foreach($returned_brands as $brand) {
+        $name = $brand['name'];
+        $id = $brand['id'];
+        $new_brand = new Brand($name, $id);
+        array_push($brands, $new_brand);
+      }
+      return $brands;
+    }
+
     function addStore($store)
     {
       $GLOBALS['DB']->exec("INSERT INTO stores_brands (store_id, brand_id) VALUES ({$store->getId()}, {$this->getId()});");
