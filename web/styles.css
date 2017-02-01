@@ -1,0 +1,37 @@
+.fill img{
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow:hidden;
+  background-size: cover;
+  background-position: center center;
+}
+
+#whitetxt, h3 {
+  color: white;
+}
+
+#whitetxt {
+  font-family: 'Lobster', cursive;
+  font-size: 100px;
+}
+
+#links {
+  background-color: rgba(180, 180, 180, 0.2);
+  border-radius: 25px;
+  margin-top: 2%;
+}
+
+.shoe-link {
+  font-family: 'Lobster', cursive;
+  text-align: center;
+  color: white;
+}
+
+.shoe-link:hover {
+  font-family: 'Lobster', cursive;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+}
