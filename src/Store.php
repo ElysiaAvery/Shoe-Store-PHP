@@ -66,15 +66,28 @@
       $returned_brands = $GLOBALS['DB']->query("SELECT brands.* FROM stores
         JOIN stores_brands ON (stores_brands.store_id = stores.id)
         JOIN brands ON (brands.id = stores_brands.brand_id)
-        WHERE store.id = {$this->getId()};");
+        WHERE stores.id = {$this->getId()};");
       $brands = array();
       foreach($returned_brands as $brand) {
         $name = $brand['name'];
         $id = $brand['id'];
-        $new_brand = new Store($name, $id);
+        $new_brand = new Brand($name, $id);
         array_push($brands, $new_brand);
       }
       return $brands;
+    }
+
+    static function find($search_id)
+    {
+      $found_store = null;
+      $stores = Store::getAll();
+      foreach($stores as $store) {
+        $store_id = $store->getId();
+        if ($store_id == $search_id) {
+          $found_store = $store;
+        }
+      }
+      return $found_store;
     }
 
     static function deleteAll()

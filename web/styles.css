@@ -35,3 +35,9 @@
   color: white;
   text-decoration: none;
 }
+
+#store-links {
+  background-color: rgba(180, 180, 180, 0.2);
+  border-radius: 25px;
+  margin-top: 2%;
+}
